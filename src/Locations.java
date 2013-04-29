@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -16,12 +20,35 @@ public class Locations {
 
     public Locations (){
          locations = new ArrayList<Library>();
-
+          readFile("\\ics340\\libraries.txt");
 
 
     }
 
     public void addLibrary(Library singleLocation){
         locations.add(singleLocation);
+    }
+
+    public void readFile(String file_name){
+        try {
+
+            FileReader fileReader = new FileReader(file_name);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String strLine;
+
+            while ((strLine = bufferedReader.readLine()) != null){
+
+
+
+
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+    }
     }
 }
