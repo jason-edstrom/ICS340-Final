@@ -32,6 +32,10 @@ class Vertex{
         reset();
 
     }
+
+    public String getId(){
+        return id;
+    }
     public Library getVertexLocation(){
         return location;
     }
@@ -57,8 +61,8 @@ class Edge {
 public class Graph {
     private String graphError = null;
     public static final double INFINITY = Double.MAX_VALUE;
-    private Map<String, Vertex> vertexMap = new HashMap<String, Vertex>( );
-    private ArrayList<String> results = new ArrayList<String>();
+    private Map<Library, Vertex> vertexMap = new HashMap<Library, Vertex>( );
+    //private ArrayList<String> results = new ArrayList<String>();
     double cost = 0;
 
     public int getVertexMapSize(){
@@ -73,6 +77,8 @@ public class Graph {
         v.adj.add(new Edge(w, cost));
     }
 
+
+
     public void resetGraph(){
         clearAll();
     }
@@ -81,18 +87,18 @@ public class Graph {
 
         return cost;
     }
-    public void printPath (String destWord){
-        Vertex w = vertexMap.get(destWord);
+    public void printPath (Library location){
+        Vertex w = vertexMap.get(location);
         if ( w == null){
             throw new NoSuchElementException("Destination vertex not found: Does not fit into Graph");
         } else if (w.dist == INFINITY){
-            System.out.println(destWord + " is unreachable.");
-            graphError = destWord + " is unreachable.";
+            System.out.println(location.getId() + " is unreachable.");
+            graphError = location.getId() + " is unreachable.";
         }
 
         else {
             cost = w.dist;
-            System.out.print( "( Cost is: " + w.dist + ") ");
+            System.out.print( "( Distance is: " + w.dist + ") ");
             printPath( w );
             System.out.println();
         }
@@ -115,7 +121,7 @@ public class Graph {
         The path is known to exist
          */
     private void printPath (Vertex dest){
-        results.add(dest.getVertexLocation());
+        //results.add(dest.getVertexLocation());
         if (dest.prev != null){
             //results.add(dest.prev.getVertexWord());
             printPath(dest.prev);
@@ -123,7 +129,7 @@ public class Graph {
 
         }
 
-        System.out.print(dest.word);
+        System.out.print(dest.getVertexLocation().getName());
 
     }
 
@@ -142,18 +148,15 @@ public class Graph {
 
      */
 
-    public Map<String, Vertex> getVertexMap(){
+    public Map<Library, Vertex> getVertexMap(){
         return vertexMap;
     }
 
-    public ArrayList<String> getResults(){
 
-        return results;
-    }
-    public void unweighted (String sourceWord){
+    public void unweighted (Library location){
         clearAll();
 
-        Vertex start = vertexMap.get(sourceWord);
+        Vertex start = vertexMap.get(location);
 
         if (start == null){
             throw new NoSuchElementException("Start vertex not found: Does not fit into Graph");

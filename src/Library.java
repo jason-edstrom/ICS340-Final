@@ -22,6 +22,8 @@ public class Library {
         this.y = y;
     }
 
+
+
     public String getId(){
         return id;
     }
@@ -40,5 +42,11 @@ public class Library {
 
     public String getY(){
         return y;
+    }
+
+    public String toString(){
+        String tmp = new String (id+","+county+","+name+","+x+","+y);
+
+        return tmp;
     }
 }
