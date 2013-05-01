@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.StringTokenizer;
 
 /**
@@ -19,6 +20,7 @@ public class Locations {
          private String locationFile = "/ics340/libraries.txt";
          private ArrayList<Library> locations;
          private ArrayList<Distance> distances;
+         //private ArrayList sortedEdges;
          private Graph graph = new Graph();
 
     public Locations (){
@@ -29,6 +31,10 @@ public class Locations {
          System.out.println("Files Parsed");
         buildGraph();
         System.out.println("Graph Built");
+      graph.sortGEdgesDistance();
+        System.out.println("Sorted");
+      graph.computeMinimumSpanningTree();
+
     }
 
     public void addLibrary(Library singleLocation){
@@ -170,8 +176,8 @@ public class Locations {
                     break;
                 }
             }
-            distance = d.getDistance();
-            graph.addEdge(origin, destination, d.getDistance());
+            //distance = d.getDistance();
+            graph.addGEdge(origin, destination, d.getDistance());
         }
 
     }
