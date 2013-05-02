@@ -15,27 +15,26 @@ import java.util.StringTokenizer;
  * Time: 12:26 AM
  * Java Class: PACKAGE_NAME
  */
-public class Locations {
+public class MNKruskal {
          private String distanceFile = "/ics340/distances.txt";
          private String locationFile = "/ics340/libraries.txt";
          private ArrayList<Library> locations;
          private ArrayList<Distance> distances;
-         //private ArrayList sortedEdges;
-         //private Graph graph = new Graph();
-
-    public Locations (){
+         private ArrayList<Kruskal.Edge> MSTEdges;
+         private Graph graph = new Graph();
+         private Graph graphMST = new Graph();
+         private Kruskal kruskal;
+    public MNKruskal (){
         locations = new ArrayList<Library>();
         distances = new ArrayList<Distance>();
           readLibraries(locationFile);
           readDistances(distanceFile);
          System.out.println("Files Parsed");
         buildGraph();
-        System.out.println("Graph Built");
-      //graph.sortGEdgesDistance();
-        System.out.println("Sorted");
-      //graph.computeMinimumSpanningTree();
+         kruskal = new Kruskal(locations, distances);
+        buildMSTGraph();
 
-      Kruskal kruskal = new Kruskal(locations, distances);
+
 
     }
 
@@ -179,12 +178,25 @@ public class Locations {
                 }
             }
             //distance = d.getDistance();
-            //graph.addGEdge(origin, destination, d.getDistance());
+            graph.addGEdge(origin, destination, d.getDistance());
         }
 
+
     }
+
+    public void buildMSTGraph(){
+
+        MSTEdges = kruskal.getTree();
+        for (Kruskal.Edge e : MSTEdges){
+            graphMST.addGEdge(e.getU().getVertexLocation(), e.getV().getVertexLocation(), e.getWeight() );
+        }
+          System.out.println("MST graph built");
+
+
+    }
+
      public static void main (String args[]){
-         Locations locations = new Locations();
+         MNKruskal locations = new MNKruskal();
      }
 
  }

@@ -16,6 +16,7 @@ public class Kruskal {
     private ArrayList<Edge> edges;
     private ArrayList<Library> libraries;
     private ArrayList<Distance> distances;
+    private ArrayList<Edge> tree;
 
     public Kruskal(ArrayList libraries, ArrayList distances){
         this.libraries = libraries;
@@ -27,7 +28,7 @@ public class Kruskal {
         DisjointSet disjointSet = new DisjointSet(vertices);
         System.out.println("DisjointSet Built");
 
-        ArrayList<Edge> tree = new ArrayList<Edge>();
+        tree = new ArrayList<Edge>();
 
         Collections.sort(edges);
         System.out.println("Edges Sorted");
@@ -47,6 +48,9 @@ public class Kruskal {
         System.out.println("Done");
     }
 
+    public ArrayList<Edge> getTree(){
+        return tree;
+    }
     public double sum(List<Edge> edges) {
         double sum = 0;
 
