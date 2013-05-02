@@ -21,7 +21,7 @@ public class Locations {
          private ArrayList<Library> locations;
          private ArrayList<Distance> distances;
          //private ArrayList sortedEdges;
-         private Graph graph = new Graph();
+         //private Graph graph = new Graph();
 
     public Locations (){
         locations = new ArrayList<Library>();
@@ -31,9 +31,11 @@ public class Locations {
          System.out.println("Files Parsed");
         buildGraph();
         System.out.println("Graph Built");
-      graph.sortGEdgesDistance();
+      //graph.sortGEdgesDistance();
         System.out.println("Sorted");
-      graph.computeMinimumSpanningTree();
+      //graph.computeMinimumSpanningTree();
+
+      Kruskal kruskal = new Kruskal(locations, distances);
 
     }
 
@@ -177,7 +179,7 @@ public class Locations {
                 }
             }
             //distance = d.getDistance();
-            graph.addGEdge(origin, destination, d.getDistance());
+            //graph.addGEdge(origin, destination, d.getDistance());
         }
 
     }
