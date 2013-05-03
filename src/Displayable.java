@@ -7,5 +7,10 @@
  * Time: 1:54 PM
  * Java Class: PACKAGE_NAME
  */
-public class Displayable {
+public interface Displayable {
+
+    public int getX();
+    public int getY();
+    public String getName();
+
 }

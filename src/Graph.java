@@ -23,21 +23,45 @@ class Vertex{
     public Library location;             //Word at this Node
     public List<GEdge> adj;             //List of  Adjacent vertices
     public Vertex prev;            //Previous vertex on shortest path
-    public boolean visited;       //Extra variable
-    public boolean root;
+    private int dx;
+    private int dy;
+
     public int numberVetices = 0;
     public double           dist;
 
 
     public Vertex (Library location){
-        visited = false;
+        dy = 0;
+        dx = 0;
         id = location.getId();
         this.location = location;
         adj = new LinkedList<GEdge>();
         reset();
 
     }
+    public void setGPSPixel(int heightContainer, int widthContainer){
+           setDx((int) Math.round(Math.abs(((Double.parseDouble(location.getX())*100)* heightContainer)/180)) );
+           setDy((int) Math.round(Math.abs(((Double.parseDouble(location.getY())*100)* widthContainer)/360)) );
+    }
 
+    public int getDx(){
+        return dx;
+    }
+
+    public int getDy(){
+        return dy;
+    }
+
+    public void setDx(int x){
+        dx = x;
+    }
+
+    public void setDy (int y){
+        dy = y;
+    }
+    public List<GEdge> getAdj(){
+        return adj;
+    }
     public String getId(){
         return id;
     }
@@ -50,14 +74,15 @@ class Vertex{
         dist = Graph.INFINITY;
     }
 
-    public boolean isVisited() {
-        return visited;
+    public int getX(){
+
+
+        return (int) Math.round(Double.parseDouble(location.getX()) * 10);
     }
 
-    public void setVisited(boolean visited) {
-        this.visited = visited;
+    public int getY(){
+        return (int) Math.round(Double.parseDouble(location.getY()) * 10);
     }
-
 
 }
 
@@ -73,20 +98,13 @@ class GEdge implements Comparable<GEdge>{
         cost = c;
     }
 
-    public void setNodesVisited() {
-        origin.setVisited(true); //added origin
-        origin.numberVetices++;
-        dest.setVisited(true);
-        dest.numberVetices++;
-    }
+
 
     public double getDistance(){
         return cost;
     }
 
-    public boolean areNodesVisited() {
-        return (origin.isVisited() & dest.isVisited());   //added origin
-    }
+
 
     @Override
     public String toString(){
@@ -107,7 +125,7 @@ public class Graph {
     private Map<Library, Vertex> vertexMap = new HashMap<Library, Vertex>( );
     //private ArrayList<String> results = new ArrayList<String>();
     private ArrayList<GEdge> edges = new ArrayList<GEdge>();
-    private ArrayList<GEdge> sortedGEdges = new ArrayList<GEdge>();
+    private ArrayList<Vertex> vertices = new ArrayList<Vertex>();
     double cost = 0;
 
     public int getVertexMapSize(){
@@ -125,13 +143,13 @@ public class Graph {
         edges.add(e);
     }
 
-     public void sortGEdgesDistance(){
-         Collections.sort(edges, new DistanceComparator());
-         System.out.println("Sorted");
-         //return edges;
-     }
+    public ArrayList<Vertex> getVertices(){
+        return vertices;
+    }
 
-
+    public ArrayList<GEdge> getEdges(){
+        return edges;
+    }
     public void resetGraph(){
         clearAll();
     }
@@ -164,7 +182,9 @@ public class Graph {
       private Vertex getVertex (Library location){
           Vertex v = vertexMap.get(location);
           if ( v == null){
+
               v = new Vertex(location);
+              vertices.add(v);
               vertexMap.put(location, v);
           }
           return v;
@@ -206,41 +226,8 @@ public class Graph {
     }
 
 
-    public void unweighted (Library location){
-        clearAll();
-
-        Vertex start = vertexMap.get(location);
-
-        if (start == null){
-            throw new NoSuchElementException("Start vertex not found: Does not fit into Graph");
-        }
-
-        Queue <Vertex> q = new LinkedList<Vertex>();
-        q.add(start);
-        start.dist = 0;
-
-        while ( !q.isEmpty()){
-            Vertex v = q.remove();
-            for (GEdge e : v.adj){
-                Vertex w = e.dest;
-                if (w.dist == INFINITY){
-                    w.dist = v.dist +1;
-                    w.prev = v;
-                    q.add(w);
-                }
-            }
-        }
-    }
-
-    private static class DistanceComparator implements Comparator<GEdge>{
-
-        @Override
-        public int compare(GEdge e1, GEdge e2) {
-            return (e1.cost < e2.cost ) ? -1: (e1.cost > e2.cost) ? 1:0 ;
 
 
-        }
 
-    }
 
 }

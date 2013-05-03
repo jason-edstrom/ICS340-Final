@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,8 +22,8 @@ public class MNKruskal {
          private ArrayList<Library> locations;
          private ArrayList<Distance> distances;
          private ArrayList<Kruskal.Edge> MSTEdges;
-         private Graph graph = new Graph();
-         private Graph graphMST = new Graph();
+         public Graph graph = new Graph();
+         public Graph graphMST = new Graph();
          private Kruskal kruskal;
     public MNKruskal (){
         locations = new ArrayList<Library>();
@@ -36,7 +37,12 @@ public class MNKruskal {
 
 
 
+
     }
+
+
+
+
 
     public void addLibrary(Library singleLocation){
         locations.add(singleLocation);
@@ -197,6 +203,7 @@ public class MNKruskal {
 
      public static void main (String args[]){
          MNKruskal locations = new MNKruskal();
+
      }
 
  }
