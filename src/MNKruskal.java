@@ -15,6 +15,8 @@ import java.util.StringTokenizer;
  * Date: 4/29/13
  * Time: 12:26 AM
  * Java Class: PACKAGE_NAME
+ *
+ * Class is using hardcoded X and Y coordinates from libraries.txt
  */
 public class MNKruskal {
          private String distanceFile = "/ics340/distances.txt";
@@ -25,6 +27,7 @@ public class MNKruskal {
          public Graph graph = new Graph();
          public Graph graphMST = new Graph();
          private Kruskal kruskal;
+
     public MNKruskal (){
         locations = new ArrayList<Library>();
         distances = new ArrayList<Distance>();
@@ -79,10 +82,10 @@ public class MNKruskal {
                             tmpName = st.nextToken();
                             break;
                         case 3:
-                            tmpX = st.nextToken();
+                            tmpY = st.nextToken();
                             break;
                         case 4:
-                            tmpY = st.nextToken();
+                            tmpX = st.nextToken();
                             break;
                     }
                     counter++;

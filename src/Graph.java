@@ -39,10 +39,7 @@ class Vertex{
         reset();
 
     }
-    public void setGPSPixel(int heightContainer, int widthContainer){
-           setDx((int) Math.round(Math.abs(((Double.parseDouble(location.getX())*100)* heightContainer)/180)) );
-           setDy((int) Math.round(Math.abs(((Double.parseDouble(location.getY())*100)* widthContainer)/360)) );
-    }
+
 
     public int getDx(){
         return dx;
@@ -77,11 +74,11 @@ class Vertex{
     public int getX(){
 
 
-        return (int) Math.round(Double.parseDouble(location.getX()) * 10);
+        return Integer.parseInt(location.getX());
     }
 
     public int getY(){
-        return (int) Math.round(Double.parseDouble(location.getY()) * 10);
+        return Integer.parseInt(location.getY());
     }
 
 }
