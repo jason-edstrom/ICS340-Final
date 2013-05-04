@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 
 /*
@@ -11,14 +12,17 @@ import java.util.ArrayList;
 public class GraphView extends javax.swing.JPanel {
   private Graph  graph;
 
-
   public GraphView(Graph graph) {
     this.graph = graph;
   }
 
 
   protected void paintComponent(java.awt.Graphics g) {
+
     super.paintComponent(g);
+
+
+
       //g.translate(400,250);
       //g.drawLine(400,250,10,10);
     //;

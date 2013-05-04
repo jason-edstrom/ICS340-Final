@@ -19,8 +19,8 @@ import java.util.StringTokenizer;
  * Class is using hardcoded X and Y coordinates from libraries.txt
  */
 public class MNKruskal {
-         private String distanceFile = "/ics340/distances.txt";
-         private String locationFile = "/ics340/libraries.txt";
+         private String distanceFile = null;
+         private String locationFile = null;
          private ArrayList<Library> locations;
          private ArrayList<Distance> distances;
          private ArrayList<Kruskal.Edge> MSTEdges;
@@ -29,6 +29,17 @@ public class MNKruskal {
          private Kruskal kruskal;
 
     public MNKruskal (){
+        //OS Detection
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            // includes: Windows 2000,  Windows 95, Windows 98, Windows NT, Windows Vista, Windows XP
+            locationFile = "c:\\ics340\\libraries.txt";
+            distanceFile = "c:\\ics340\\distances.txt";
+            System.out.println("Detected Windows: " + System.getProperty("os.name"));
+        } else {
+            locationFile = "/ics340/libraries.txt";
+            distanceFile = "/ics340/distances.txt";
+            System.out.println("Detected Mac OS X: " + System.getProperty("os.name"));
+        }
         locations = new ArrayList<Library>();
         distances = new ArrayList<Distance>();
           readLibraries(locationFile);
@@ -206,6 +217,7 @@ public class MNKruskal {
 
      public static void main (String args[]){
          MNKruskal locations = new MNKruskal();
+         DrawGraph drawGraph = new DrawGraph(locations);
 
      }
 
