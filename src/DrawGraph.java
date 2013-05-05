@@ -26,20 +26,20 @@ public class DrawGraph extends JFrame implements ActionListener {
 
     private void setupGUI() {
         solveButton = new JButton();
-        solveButton.setLocation(250,10);
+        solveButton.setLocation(300,10);
         solveButton.setSize(200,30);
         solveButton.setText("Solve");
         getContentPane().add(solveButton);
 
         graphView =  new GraphView(locations.graph);
         graphView.setLocation(0,30);
-        graphView.setSize(700,600 );
+        graphView.setSize(750,600 );
         getContentPane().add(graphView);
 
         solveButton.addActionListener(this);
 
         setTitle("Library Map");
-        setSize(700,700);
+        setSize(750,700);
         setVisible(true);
         setResizable(false);
 
@@ -73,13 +73,13 @@ public class DrawGraph extends JFrame implements ActionListener {
             System.out.println("Solve Button Pressed");
             JFrame frame = new JFrame("MST Solution Map");
             GraphView applet = new GraphView(locations.graphMST);
-            applet.setSize(700, 500);
+            applet.setSize(750, 500);
             frame.add(applet);
 
 
             frame.setLocationRelativeTo(null);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(700, 700);
+            frame.setSize(750, 700);
             frame.setVisible(true);
         }
     }
