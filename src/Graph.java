@@ -10,6 +10,9 @@ import static java.util.Collections.*;
  * Date: 3/21/13
  * Time: 12:28 AM
  * Java Class: PACKAGE_NAME
+ *
+ * Graph class builds the graph for display.
+ * Uses hardcoded XY coordinates
  */
 class GraphException extends RuntimeException{
 
@@ -25,8 +28,6 @@ class Vertex{
     public Vertex prev;            //Previous vertex on shortest path
     private int dx;
     private int dy;
-
-    public int numberVetices = 0;
     public double           dist;
 
 
@@ -120,7 +121,7 @@ public class Graph {
     private String graphError = null;
     public static final double INFINITY = Double.MAX_VALUE;
     private Map<Library, Vertex> vertexMap = new HashMap<Library, Vertex>( );
-    //private ArrayList<String> results = new ArrayList<String>();
+
     private ArrayList<GEdge> edges = new ArrayList<GEdge>();
     private ArrayList<Vertex> vertices = new ArrayList<Vertex>();
     double cost = 0;

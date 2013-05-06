@@ -6,6 +6,9 @@
  * Date: 4/29/13
  * Time: 12:26 AM
  * Java Class: PACKAGE_NAME
+ *
+ * Library class that holds data about each individual location
+ *
  */
 public class Library {
       private String id;

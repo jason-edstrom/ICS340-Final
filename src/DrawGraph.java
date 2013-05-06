@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
  * Date: 5/3/13
  * Time: 12:08 AM
  * Java Class: PACKAGE_NAME
+ *
+ * DrawGraph Class creates the gui aspect and handles the button calls.
  */
 public class DrawGraph extends JFrame implements ActionListener {
      JButton solveButton;
@@ -42,26 +44,6 @@ public class DrawGraph extends JFrame implements ActionListener {
         setSize(750,700);
         setVisible(true);
         setResizable(false);
-
-    }
-
-
-    public static void main(String[] args) {
-       /* MNKruskal locations = new MNKruskal();
-
-
-        JFrame frame = new JFrame("Library Map");
-        DrawGraph applet = new DrawGraph(locations.graph);
-        applet.setSize(700, 500);
-        frame.add(applet);
-        applet.init();
-        applet.start();
-
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(700, 700);
-        frame.setVisible(true);
-        */
 
     }
 

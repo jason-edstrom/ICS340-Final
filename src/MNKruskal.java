@@ -16,7 +16,9 @@ import java.util.StringTokenizer;
  * Time: 12:26 AM
  * Java Class: PACKAGE_NAME
  *
- * Class is using hardcoded X and Y coordinates from libraries.txt
+ * MNKruskal Class is using hardcoded X and Y coordinates from libraries.txt
+ * Parses the txt files, builds first Graph and hands the data off to the Kruskal class.
+ * Supports OS detection for Windows and Mac OS X
  */
 public class MNKruskal {
          private String distanceFile = null;
@@ -197,7 +199,7 @@ public class MNKruskal {
                     break;
                 }
             }
-            //distance = d.getDistance();
+
             graph.addGEdge(origin, destination, d.getDistance());
         }
 
@@ -209,6 +211,7 @@ public class MNKruskal {
         MSTEdges = kruskal.getTree();
         for (Kruskal.Edge e : MSTEdges){
             graphMST.addGEdge(e.getU().getVertexLocation(), e.getV().getVertexLocation(), e.getWeight() );
+            System.out.println(e);
         }
           System.out.println("MST graph built");
 

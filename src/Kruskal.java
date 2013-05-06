@@ -10,6 +10,8 @@ import java.util.List;
  * Date: 5/1/13
  * Time: 9:26 PM
  * Java Class: PACKAGE_NAME
+ *
+ * Handles the Kruskal Alogrithm using the find-union approach
  */
 public class Kruskal {
     private ArrayList<Vertex> vertices;
@@ -131,6 +133,11 @@ public class Kruskal {
             }
 
             return sum;
+        }
+
+        @Override
+        public String toString(){
+            return "(" + u.getId() + ", " + v.getId() + ") : Weight = " + weight;
         }
     }
 
