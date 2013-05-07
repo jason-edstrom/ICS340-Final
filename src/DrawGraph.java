@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
  * DrawGraph Class creates the gui aspect and handles the button calls.
  */
 public class DrawGraph extends JFrame implements ActionListener {
+    JFrame frame;
      JButton solveButton;
      JButton displayButton;
      GraphView displayPanel;
@@ -33,7 +34,7 @@ public class DrawGraph extends JFrame implements ActionListener {
     }
 
     private void setupGUI() {
-
+        frame = new JFrame("MST Solution Map");
         displayButton = new JButton();
         displayButton.setLocation(400, 10);
         displayButton.setSize(100,30);
@@ -79,7 +80,7 @@ public class DrawGraph extends JFrame implements ActionListener {
         solveButton.addActionListener(this);
 
         setTitle("Library Map");
-        setSize(1800, 800);
+        setSize(1000, 800);
         setVisible(true);
         setResizable(false);
     }
@@ -93,27 +94,37 @@ public class DrawGraph extends JFrame implements ActionListener {
                 // getContentPane().remove(solve);
              //}
 
-            /*System.out.println("Solve Button Pressed");
-            JFrame frame = new JFrame("MST Solution Map");
-            GraphView applet = new GraphView(locations.graphMST);
-            applet.setSize(750, 500);
-            frame.add(applet);
+            System.out.println("Solve Button Pressed");
+            drawingStep(locations.graphMST);
+            solve.setSize(750, 500);
+
+            if (!frame.isVisible()){
+
+            //GraphView applet = new GraphView(locations.graphMST);
+
+            frame.add(solve);
 
 
             frame.setLocationRelativeTo(null);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(750, 700);
-            frame.setVisible(true);*/
+            frame.setVisible(true);
+            } else {
+                frame.validate();
+                frame.repaint();
+            }
 
-            drawingStep(locations.graphMST);
-             solve.setLocation(750, 30);
-             solve.setSize(900, 800);
-            JScrollBar jScrollBar = new JScrollBar();
-            jScrollBar.
 
+             //solve.setLocation(0,0);
+             //solve.setSize(900, 800);
+           //JScrollPane jScrollPane1 = new JScrollPane();
+            //jScrollPane1.setLayout(null);
+
+            //jScrollBar.
+            //jScrollPane1.add(solve);
+          // getContentPane().add(jScrollPane1);
              //getContentPane().add(solve);
-            getContentPane().validate();
-            getContentPane().repaint();
+
         }
 
         if (obj == displayButton){
