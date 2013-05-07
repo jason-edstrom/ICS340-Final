@@ -92,7 +92,11 @@ public class GraphView extends javax.swing.JPanel {
         g.drawLine(x1, y1, x2, y2);
         g.drawString(String.valueOf(edges.get(j).getDistance()), ((x1+x2)/2) ,((y1+y2)/2));
         }
+        if (counter == edges.size()){
+            counter = 0;
+        }  else{
         counter++;
+        }
         //validate();
         //repaint();
     }
